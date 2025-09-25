@@ -11,6 +11,8 @@ tableau = [
     [0, 0, 0, 0, 0, 0, 0],
 ]
 
+joueur_courant = 1
+
 # afficher la grille 
 
 def afficher_grille():
@@ -63,3 +65,5 @@ while True:
 
     except ValueError:
         print("Uniquement un chiffre !")
+
+# si un des joeur rempli les regles pour gagner (4 jetons alignes horizontalement, verticalement ou den diagonale) il est declare gagnant
