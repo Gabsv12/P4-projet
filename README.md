@@ -1,6 +1,6 @@
 Projet Algorithmie avancee
 
-Coder un jeu en pyhton : puissance 4 
+Coder un jeu en phyton : puissance 4 
 
 Regles :
 
