@@ -1,9 +1,9 @@
 Projet Algorithmie avancee
 
-Coder un jeu en pyhton : puissancde 4 
+Coder un jeu en pyhton : puissance 4 
 
 Regles :
 
-Jeu a 2 joueurs qui placent chacun leur tour un jeton dans une grille.
+Jeu a 2 joueurs placent chacun leur tour un jeton dans la grille.
 
-le premier qui aligne 4 jeton de maniere verticale, horizontale ou diagonale gagne la partie.
+le premier joueur alignant 4 jetons de maniere verticale, horizontale ou diagonale gagne la partie.
