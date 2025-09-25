@@ -52,18 +52,18 @@ print("Coucou l'ami, joue au Puissance 4 !")
 while True:
     try:
         choix = int(input(f"Joueur {joueur_courant}, quelle colonne choisis-tu ? (0-6) : "))
-        if choix < 1 or choix > 7:
-            print(" Colonne incorrect, rappel entre 0-6 !")
-            continue
-
-        if not jouer_colonne(choix):
-            print(" Ah deja pris :( , choisis-en une autre !")
-            continue
-
-        afficher_grille()
-        changer_joueur()
-
     except ValueError:
-        print("Uniquement un chiffre !")
+        print("Uni­quement un chiffre !")
+        continue
+
+    if choix < 0 or choix > 6:
+        print("Colonne incorrecte, rappel entre 0-6 !")
+        continue
+
+    if not jouer_colonne(choix):
+        print("Ah déjà pris :( , choisis-en une autre !")
+        continue
+
+    afficher_grille()
 
 # si un des joeur rempli les regles pour gagner (4 jetons alignes horizontalement, verticalement ou den diagonale) il est declare gagnant
