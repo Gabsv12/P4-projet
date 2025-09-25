@@ -2,7 +2,7 @@
 
 # on creer la grille de 6 ranges et 7 colonnes
 
-const = [
+tableau = [
     [0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0],
