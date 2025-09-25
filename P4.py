@@ -63,5 +63,3 @@ while True:
 
     except ValueError:
         print("Uniquement un chiffre !")
-
-# si un des joeur rempli les regles pour gagner (4 jetons alignes horizontalement, verticalement ou den diagonale) il est declare gagnant
