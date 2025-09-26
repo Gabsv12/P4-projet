@@ -30,20 +30,57 @@ def afficher_grille():
 
 def changer_joueur():
     global joueur_courant
-    if joueur_courant == 1:
-        joueur_courant = 2
-    else:
-        joueur_courant = 1
+    joueur_courant = 3 - joueur_courant 
 
 def jouer_colonne(col):
-    for i in range(len(tableau)-1, -1, -1):
+    i = len(tableau) - 1  
+    while i >= 0:
         if tableau[i][col] == 0:
             tableau[i][col] = joueur_courant
             return True
-    return False  
+        i -= 1
+    return False
+
+def est_gagnant(joueur):
+
+    lignes = len(tableau)
+    colonnes = len(tableau[0])
+
+    for i in range(lignes):
+        for j in range(colonnes - 3):
+            if (tableau[i][j] == joueur and
+                tableau[i][j+1] == joueur and
+                tableau[i][j+2] == joueur and
+                tableau[i][j+3] == joueur):
+                return True
+
+    for j in range(colonnes):
+        for i in range(lignes - 3):
+            if (tableau[i][j] == joueur and
+                tableau[i+1][j] == joueur and
+                tableau[i+2][j] == joueur and
+                tableau[i+3][j] == joueur):
+                return True
+
+    for i in range(lignes - 3):
+        for j in range(colonnes - 3):
+            if (tableau[i][j] == joueur and 
+                tableau[i+1][j+1] == joueur and
+                tableau[i+2][j+2] == joueur and
+                tableau[i+3][j+3] == joueur):
+                return True
+
+    for i in range(3, lignes):
+        for j in range(colonnes - 3):
+            if (tableau[i][j] == joueur and
+                tableau[i-1][j+1] == joueur and
+                tableau[i-2][j+2] == joueur and
+                tableau[i-3][j+3] == joueur):
+                return True
+
+    return False
 
 
-# Sortie principale
 
 print("Coucou l'ami, joue au Puissance 4 !")
 afficher_grille()
@@ -51,16 +88,24 @@ afficher_grille()
 while True:
     try:
         choix = int(input(f"Joueur {joueur_courant}, quelle colonne choisis-tu ? (0-6) : "))
-        if choix < 1 or choix > 7:
-            print(" Colonne incorrect, rappel entre 0-6 !")
-            continue
-
-        if not jouer_colonne(choix):
-            print(" Ah deja pris :( , choisis-en une autre !")
-            continue
-
-        afficher_grille()
-        changer_joueur()
-
     except ValueError:
-        print("Uniquement un chiffre !")
+        print("Uni­quement un chiffre !")
+        continue
+
+    if choix < 0 or choix > 6:
+        print("Colonne incorrecte, rappel entre 06 !")
+        continue
+
+    if not jouer_colonne(choix):
+        print("Ah déjà pris :( , choisis-en une autre !")
+        continue
+
+    afficher_grille()
+
+    if est_gagnant(joueur_courant):
+        print(f"Bravo ! Joueur {joueur_courant} a gagné ! 🎉")
+        break
+
+    changer_joueur()
+
+input("Appuie sur Entrée pour quitter...")
