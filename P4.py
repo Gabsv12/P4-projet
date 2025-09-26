@@ -53,7 +53,7 @@ while True:
     try:
         choix = int(input(f"Joueur {joueur_courant}, quelle colonne choisis-tu ? (0-6) : "))
     except ValueError:
-        print("Uni­quement un chiffre !")
+        print("Uniquement un chiffre !")
         continue
 
     if choix < 0 or choix > 6:
