@@ -17,13 +17,12 @@ joueur_courant = 1
 
 def afficher_grille():
     for ligne in tableau:
-        ligne_affichee = ""
         for x in ligne:
             if x == 0:
-                ligne_affichee += ". "
+                print(".", end=" ")
             else:
-                ligne_affichee += str(x) + " "
-        print(ligne_affichee.strip())
+                print(x, end=" ")
+        print()  
     print("-" * 29)
 
 
@@ -31,17 +30,60 @@ def afficher_grille():
 
 def changer_joueur():
     global joueur_courant
-    if joueur_courant == 1:
-        joueur_courant = 2
-    else:
-        joueur_courant = 1
+    joueur_courant = 3 - joueur_courant 
 
 def jouer_colonne(col):
-    for i in range(len(tableau)-1, -1, -1):
+    i = len(tableau) - 1 
+    while i >= 0:
         if tableau[i][col] == 0:
             tableau[i][col] = joueur_courant
             return True
-    return False  
+        i -= 1
+    return False
+
+# Vérifier si vainqueur
+def est_gagnant(joueur):
+
+    lignes = len(tableau)
+    colonnes = len(tableau[0])
+
+    # Horizontal
+    for i in range(lignes):
+        for j in range(colonnes - 3):
+            if (tableau[i][j] == joueur and
+                tableau[i][j+1] == joueur and
+                tableau[i][j+2] == joueur and
+                tableau[i][j+3] == joueur):
+                return True
+
+    # Vertical
+    for j in range(colonnes):
+        for i in range(lignes - 3):
+            if (tableau[i][j] == joueur and
+                tableau[i+1][j] == joueur and
+                tableau[i+2][j] == joueur and
+                tableau[i+3][j] == joueur):
+                return True
+
+    # Diagonale
+    for i in range(lignes - 3):
+        for j in range(colonnes - 3):
+            if (tableau[i][j] == joueur and 
+                tableau[i+1][j+1] == joueur and
+                tableau[i+2][j+2] == joueur and
+                tableau[i+3][j+3] == joueur):
+                return True
+
+    # Diagonale 
+    for i in range(3, lignes):
+        for j in range(colonnes - 3):
+            if (tableau[i][j] == joueur and
+                tableau[i-1][j+1] == joueur and
+                tableau[i-2][j+2] == joueur and
+                tableau[i-3][j+3] == joueur):
+                return True
+
+    return False
 
 # Sortie principale
 
@@ -67,3 +109,11 @@ while True:
     afficher_grille()
 
 # si un des joeur rempli les regles pour gagner (4 jetons alignes horizontalement, verticalement ou den diagonale) il est declare gagnant
+
+    if est_gagnant(joueur_courant):
+        print(f"Bravo ! Joueur {joueur_courant} a gagné ! ")
+        break
+
+    changer_joueur()
+
+input("Appuie sur Entrée pour quitter...")
